@@ -1,0 +1,236 @@
+<!-- <html>
+
+<head>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    <style type="text/css">
+        #menu>ul {
+            display: none;
+            list-style-type: none;
+        }
+        
+        #menu>ul>li {
+            list-style: none;
+        }
+        
+        #menu>li {
+            list-style: none;
+            font-weight: bold;
+        }
+        
+        ul>.multi::after {
+            content: ' +'
+        }
+        
+        ul>.multi-opened::after {
+            content: ' -'
+        }
+        
+        a {
+            color: red;
+        }
+    </style>
+
+    <title></title>
+</head>
+
+<body>
+
+
+    <ul id="menu" class="list">
+    </ul>
+
+
+
+
+
+    <script type="text/javascript">
+        $(window)
+            .load(
+                function() {
+                    var JSON = {
+                        menu: [{
+                            name: 'Title',
+                            link: '#',
+                            sub: [{
+                                name: 'Enclosure1',
+                                link: '#',
+                                sub: null
+                            }, {
+                                name: 'Enclosure2',
+                                link: '#',
+                                sub: null
+                            }, {
+                                name: 'Enclosure3',
+                                link: '#',
+                                sub: null
+                            }]
+                        }, {
+                            name: 'Link',
+                            link: '#',
+                            sub: null
+                        }, {
+                            name: 'Content',
+                            link: '#',
+                            sub: null
+                        }, {
+                            name: 'Enclosures',
+                            link: '#',
+                            sub: [{
+                                name: 'Enclosure1',
+                                link: '#',
+                                sub: null
+                            }, {
+                                name: 'Enclosure2',
+                                link: '#',
+                                sub: null
+                            }, {
+                                name: 'Enclosure3',
+                                link: '#',
+                                sub: null
+                            }]
+                        }, {
+                            name: 'Authors',
+                            link: '#',
+                            sub: [{
+                                name: 'Author1',
+                                link: '#',
+                                sub: null
+                            }, {
+                                name: 'Author2',
+                                link: '#',
+                                sub: null
+                            }]
+                        }, {
+                            name: 'Published At',
+                            link: '#',
+                            sub: null
+                        }, {
+                            name: 'Stream',
+                            link: '#',
+                            sub: [{
+                                name: 'STR1',
+                                link: '#',
+                                sub: null
+                            }, {
+                                name: 'STR2',
+                                link: '#',
+                                sub: null
+                            }]
+                        }]
+                    }
+
+                    $(function() {
+
+                        function parseMenu(ul, menu) {
+                            for (var i = 0; i < menu.length; i++) {
+                                var li = $(ul).append(
+                                    '<li class=' + (menu[i].sub ? 'multi' : 'simple') + '>' + menu[i].name +
+                                    '</li>');
+                                if (menu[i].sub != null) {
+                                    var subul = $('<ul class="list"></ul>');
+                                    $(li).append(subul);
+                                    parseMenu($(subul), menu[i].sub);
+                                }
+                            }
+                        }
+
+                        var menu = $('#menu');
+                        parseMenu(menu, JSON.menu);
+                    });
+                }); //]]>​
+    </script>
+    <script type="text/javascript">
+        $(document).on('click', '.list > li ', function() {
+            $(this).next('ul').toggle(200);
+            if (($(this).next('ul').length)) {
+                $(this).toggleClass('multi-opened');
+            }
+        })
+    </script>
+
+</body>
+
+</html> -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>IncludeHelp is Awesome</title>
+</head>
+
+<body>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#signup" style="margin-left:24px;">Sign Up</button>
+    <div class="modal fade" id="signup">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header" style="color:grey;text-align:center;height:50px;">
+                    <h4 class="modal-title">Edit Details</h4>
+
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <span id="pmsg"></span>
+                    <form>
+
+                        <div class="form-group">
+                            <label for="dat">Modify DueDate:*</label>
+                            <input type=date id="duedate" name="duedate">
+                        </div>
+
+                        <div class=" form-group ">
+                            <label for="priorit ">Change Priority:*</label>
+                            <select id="priority " name="priority ">
+                            <option value="1high">High</option>
+                            <option selected vlaue="2medium">Medium</option>
+                            <option value="3low">Low</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="status">Change Status:</label>
+                            <input type="checkbox" name="check" onclick="onlyOne(this)" selected>InComplete
+                            <input type="checkbox" name="check" onclick="onlyOne(this)" selected>Complete
+
+
+                        </div>
+                        <script>
+                            function onlyOne(checkbox) {
+                                var checkboxes = document.getElementsByName('check')
+                                checkboxes.forEach((item) => {
+                                    if (item !== checkbox) item.checked = false
+                                })
+                            }
+                        </script>
+
+
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="Submit" class="btn btn-primary">Update</button>
+                    <button type="Submit" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
